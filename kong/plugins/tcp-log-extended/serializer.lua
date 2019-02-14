@@ -4,7 +4,7 @@ local _M = {}
 
 local EMPTY = tablex.readonly({})
 
-function _M.serialize(ngx)
+function _M.serialize(ngx, server_name)
   local authenticated_entity
   if ngx.ctx.authenticated_credential ~= nil then
     authenticated_entity = {
@@ -49,7 +49,8 @@ function _M.serialize(ngx)
     api = ngx.ctx.api,
     consumer = ngx.ctx.authenticated_consumer,
     client_ip = ngx.var.remote_addr,
-    started_at = ngx.req.start_time() * 1000
+    started_at = ngx.req.start_time() * 1000,
+    server_name = server_name
   }
 end
 

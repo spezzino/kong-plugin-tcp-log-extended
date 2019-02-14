@@ -1,9 +1,9 @@
 package = "kong-plugin-tcp-log-extended"
-version = "0.0.1-1"
+version = "0.2.0-1"
 
 source = {
   url = "git+https://github.com/spezzino/kong-plugin-tcp-log-extended.git",
-  tag = "v0.0.1"
+  tag = "v0.2.0"
 }
 
 description = {

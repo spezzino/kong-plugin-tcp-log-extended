@@ -12,7 +12,7 @@ local timer_at = ngx.timer.at
 local TppLogHandler = BasePlugin:extend()
 
 TppLogHandler.PRIORITY = 8
-TppLogHandler.VERSION = "0.0.1"
+TppLogHandler.VERSION = "0.2.0"
 
 local function parse_json(body)
   if body then
@@ -73,7 +73,7 @@ local function log(premature, conf, message)
   end
 end
 
-function TppLogHandler:new()
+function TppLogHandler:new(conf)
   TppLogHandler.super.new(self, "tcp-log-extended")
 end
 
@@ -107,7 +107,7 @@ function TppLogHandler:log(conf)
   local ctx = ngx.ctx
   ctx.tcp_log_extended.res_body = parse_json(ctx.tcp_log_extended.res_body)
 
-  local ok, err = timer_at(0, log, conf, cjson.encode(serializer.serialize(ngx)))
+  local ok, err = timer_at(0, log, conf, cjson.encode(serializer.serialize(ngx, conf.server_name)))
   if not ok then
     ngx.log(ngx.ERR, "[tcp-log-extended] could not create timer: ", err)
   end

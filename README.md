@@ -5,10 +5,11 @@
 curl -X POST \
   http://KONG_ADMIN_URL/plugins \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'name=tcp-log-extended&config.host=LOG_SERVER_URL&config.port=LOG_SERVER_PORT&config.req_body=true&config.res_body=true'
+  -d 'name=tcp-log-extended&config.host=LOG_SERVER_URL&config.port=LOG_SERVER_PORT&config.req_body=true&config.res_body=true&config.server_name=SERVERNAME'
 ```
 
 KONG_ADMIN_URL: Kong admin url
+SERVER_NAME: Server name to identify the requests
 
 params
 
